@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class BookController {
 
-    private BookService bookService;
+    private final BookService bookService;
 
     public BookController(BookService bookService) {
         this.bookService = bookService;
@@ -19,6 +19,7 @@ public class BookController {
 
     @GetMapping("/book/details/{name}")
     public Author getDetails(@PathVariable String name) {
+        System.out.println("BookController.getDetails /book/details/{name} : " + name);
         return bookService.getBookDetails(name);
     }
 }

@@ -10,15 +10,14 @@ import java.util.Map;
 @Service
 public class BookService {
 
-    private Map<String, Author> records =
-                Map.of("mahsa", new Author("mahsa norozi", List.of("bar hasti"), List.of("admin", "reader")),
-                    "ashkan", new Author("ashkan rad", List.of("My Tehran"), List.of("researcher"))
+    private final Map<String, Author> records =
+            Map.of("borna", new Author("borna foroohari", List.of("my love city"), List.of("writer", "reader")),
+                    "bardia", new Author("bardia foroohari", List.of("my love music"), List.of("researcher"))
             );
 
     @PostAuthorize("returnObject.roles.contains('reader')")
-   // @PostAuthorize("returnObject.name == authentication.name")
     public Author getBookDetails(String name) {
-        System.out.println(name);
+        System.out.println("BookService.getBookDetails(name) : " + name);
         return records.get(name);
     }
 }
